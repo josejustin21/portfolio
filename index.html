@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Content-Security-Policy" content="
+    default-src 'self';
+    script-src 'self' https://cdn.tailwindcss.com;
+    style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+    font-src 'self' https://fonts.gstatic.com;
+    img-src 'self' data:;
+    form-action *;
+    base-uri 'self';
+    object-src 'none';
+  ">
+  <title>Jose Justin | Portfolio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<!-- Safety Measures -->
+<script>
+document.getElementById("contact-form").addEventListener("submit", function (e) {
+  const name = document.querySelector('input[name="name"]').value.trim();
+  const email = document.querySelector('input[name="email"]').value.trim();
+  const phone = document.querySelector('input[name="phone"]').value.trim();
+  const message = document.querySelector('textarea[name="message"]').value.trim();
+
+  const nameRegex = /^[A-Za-z\s]+$/;
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const phoneRegex = /^[0-9]+$/;
+
+  if (!nameRegex.test(name)) {
+    alert("Please enter a valid name (letters only).");
+    e.preventDefault();
+    return;
+  }
+
+  if (!emailRegex.test(email)) {
+    alert("Please enter a valid email address.");
+    e.preventDefault();
+    return;
+  }
+
+  if (phone && !phoneRegex.test(phone)) {
+    alert("Phone number must contain digits only.");
+    e.preventDefault();
+    return;
+  }
+
+  if (message.length < 5) {
+    alert("Message is too short.");
+    e.preventDefault();
+    return;
+  }
+
+  // Optional: escape script tags or dangerous HTML (sanitization)
+  const suspiciousPattern = /<script|<\/script|onerror=|onload=/i;
+  if (
+    suspiciousPattern.test(name) ||
+    suspiciousPattern.test(email) ||
+    suspiciousPattern.test(phone) ||
+    suspiciousPattern.test(message)
+  ) {
+    alert("Invalid characters detected. Submission blocked.");
+    e.preventDefault();
+  }
+});
+</script>
+
+<!-- Preserve Scroll Position, even after reload -->
+<script>
+  window.addEventListener('beforeunload', function () {
+    sessionStorage.setItem('scrollY', window.scrollY);
+  });
+</script>
+
+<script>
+  window.addEventListener('load', function () {
+    const scrollY = sessionStorage.getItem('scrollY');
+    if (scrollY !== null) {
+      window.scrollTo(0, parseInt(scrollY));
+    }
+  });
+</script>
+
+  <!-- Navigation Bar -->
+  <header class="navbar">
+    <nav class="nav-scroll">
+      <a href="#about">About me</a>
+      <a href="#skills">Skills</a>
+      <a href="#portfolio">Portfolio</a>
+      <a href="#contact">Contact Me</a>
+    </nav>
+  </header>
+  
+  <!--black trapezoid-->
+  <div class="image-container">
+        <img src="Trapezoid.png" class="overlay-img" alt="Overlay Image">
+  </div>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-text">
+      <p>Hi, I am</p>
+      <h1>Jose Justin</h1>
+      <h2>Writer / Graphic Designer</h2>
+      <h2>Data Analyst / Trader</h2>
+
+      <!-- Social Icons -->
+      <div class="social-icons">
+        <a href="https://wa.me/6285348632842" target="_blank"><img src="WhatsApp.png" alt="WhatsApp" /></a>
+        <a href="https://instagram.com/josejustin2204" target="_blank"><img src="Instagram.png" alt="Instagram" /></a>
+        <a href="https://linkedin.com/in/jose-justin-8b0490230" target="_blank"><img src="LinkedIn.png" alt="LinkedIn" /></a>
+      </div>
+    </div>
+
+    <!-- Hero image -->
+    <div class="hero-image">
+      <img src="Foto_diri.png" alt="Jose Justin" />
+    </div>
+  </section>
+
+  <!-- Long Story Short Section -->
+  <section class="long-story">
+  <div class="long-story-container">
+    <h3>LONG STORY SHORT</h3>
+    <p>
+      With pleasure presenting you my expertise as ourselves cross path. First comes the passion of my life, crafting prose of engaging moment in fiction coupled with vivid imagery of supporting scenery. Then comes the skill at navigating high waves and low stats of number, graphs, anything not so telling about data. Lastly, investment in gold marks old future prosperity.
+    </p>
+  </div>
+</section>
+
+
+<!-- ABOUT ME SECTION -->
+<section id="about" class="about-me-section">
+  <div class="about-me-container">
+    <!-- About Title Image -->
+    <img src="About_Me.png" alt="About Me Title" class="about-me-title-img" />
+
+    <!-- About Short Description -->
+    <p class="about-me-intro">
+      I was born 2004 in Indonesia, currently about to finish my study in bachelor degree of Business Degree in local university.
+    </p>
+
+    <!-- Decorative Divider -->
+    <div class="about-me-divider">
+      <img src="separator_Black.png" />
+    </div>
+
+    <!-- About Subskills -->
+    <div class="about-me-subskills">
+      <div class="about-subskill-block">
+        <h3 class="about-subskill-title">Analyze</h3>
+        <p class="about-subskill-text">
+          I can perform accurate data-based analysis to provide accurate conclusion regarding any relevant business problem.
+        </p>
+      </div>
+      <div class="about-subskill-block">
+        <h3 class="about-subskill-title">Design</h3>
+        <p class="about-subskill-text">
+          I can provide physical design of any idea that popped up, keeping the details on mark while delivering punctual and meaningful result.
+        </p>
+      </div>
+      <div class="about-subskill-block">
+        <h3 class="about-subskill-title">Conjure</h3>
+        <p class="about-subskill-text">
+          I’m good at summoning prose, crafting imaginary situation into vivid imagery, and putting it into a tone of knowledge commonly known as fantasy book.
+        </p>
+      </div>
+    </div>
+
+    <br><br>
+
+    <!-- Decorative Divider -->
+    <div class="about-me-divider">
+      <img src="separator_Black.png" />
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS SECTION -->
+<section id="skills" class="skills-section">
+  <div class="skills-container">
+    <!-- Skills Title Image -->
+    <img src="Skills.png" alt="Skills Title" class="skills-title-img" />
+    <br>
+    <h3 class="about-subskill-title">Main Skills</h3>
+
+    <!-- Main Skills -->
+    <div class="skills-category">
+      <h3 class="skills-category-heading">Main Skills:</h3>
+      <div class="skills-list">
+        <div class="skill-item"><img src="icons/photoshop.png" alt="Photoshop"><span>Photoshop</span></div>
+        <div class="skill-item"><img src="icons/matlab.png" alt="MATLAB"><span>MATLAB</span></div>
+        <div class="skill-item"><img src="icons/wonderdraft.png" alt="Wonderdraft"><span>Wonderdraft</span></div>
+        <div class="skill-item"><img src="icons/audacity.png" alt="Audacity"><span>Audacity</span></div>
+        <div class="skill-item"><img src="icons/power_point.png" alt="PowerPoint"><span>PowerPoint</span></div>
+        <div class="skill-item"><img src="icons/excel.png" alt="Excel"><span>Excel</span></div>
+        <div class="skill-item"><img src="icons/word.png" alt="Word"><span>Word</span></div>
+        <div class="skill-item"><img src="icons/figma.png" alt="Figma"><span>Figma</span></div>
+      </div>
+    </div>
+
+    <br>
+    <h3 class="about-subskill-title">Sub-Skills</h3>
+
+    <!-- Other Skills -->
+    <div class="skills-category">
+      <h3 class="skills-category-heading">Other Skills:</h3>
+      <div class="skills-list">
+        <div class="skill-item"><img src="icons/english.png" alt="English"><span>English</span></div>
+        <div class="skill-item"><img src="icons/chinese.png" alt="Chinese"><span>Chinese</span></div>
+        <div class="skill-item"><img src="icons/technical_analysis.png" alt="Technical Analysis"><span>Technical Analysis</span></div>
+        <div class="skill-item"><img src="icons/writing.png" alt="Writing"><span>Writing</span></div>
+        <div class="skill-item"><img src="icons/digital_marketing.png" alt="Digital Marketing"><span>Digital Marketing</span></div>
+        <div class="skill-item"><img src="icons/indonesian.png" alt="Indonesian"><span>Indonesian</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO SECTION -->
+<section id="portfolio" class="portfolio-section">
+  <div class="portfolio-container">
+    <div class="portfolio-title">
+        <img src="portfolio/Group_2.png" alt="Skills Title" class="skills-title-img" />
+    </div>
+    <div class="portfolio-grid">
+      <div class="portfolio-item">
+        <a href="design-writing.html" target="_blank" rel="noopener noreferrer">
+          <img src="portfolio/design_writing.png" alt="Design and Writing Portfolio" />
+        </a>
+      </div>
+      <div class="portfolio-item">
+        <a href="data-analyst.html" target="_blank" rel="noopener noreferrer">
+          <img src="portfolio/Data_Analyst.png" alt="Data Analysis Portfolio" />
+        </a>
+      </div>
+    </div>
+
+    <!--teks-->
+    <div class="footer-text">
+      And many more to come!
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="py-20 bg-gradient-to-b from-gray-100 to-gray-300">
+  <div class="max-w-2x2 mx-auto px-6 text-center">
+    
+    <!-- Contact Title Image -->
+    <img src="contact/Group_3.png" alt="Contact Title" class="mx-auto mb-5 w-25">
+    
+    <!-- Description Text -->
+    <p class="text-sm text-gray-700 mb-4">
+      Please share with me your unique experience and don’t hesitate to<br />
+      contact me for further details and inquiry
+    </p>
+    <br><br>
+    
+    <!-- Decorative Line Image -->
+    <img src="separator_Black.png" alt="Decorative Line" class="mx-auto mb-10 w-24">
+
+    <!-- Alert Messages -->
+    <div id="form-messages" class="mb-4 text-center text-sm font-medium"></div>
+
+    <!-- Contact Form -->
+    <form id="contact-form" action="https://formspree.io/f/xzzrorjg" method="POST" class="space-y-6">
+      
+      <!-- Name -->
+      <input type="text" name="name" required
+        pattern="[A-Za-z\s]+" title="Name should only contain letters."
+        placeholder="ENTER YOUR NAME*"
+        class="w-full border-b border-black bg-transparent placeholder-black text-black px-1 py-2 focus:outline-none focus:border-gray-600"/>
+
+      <!-- Email -->
+      <input type="email" name="email" required
+        placeholder="ENTER YOUR EMAIL*"
+        class="w-full border-b border-black bg-transparent placeholder-black text-black px-1 py-2 focus:outline-none focus:border-gray-600"/>
+
+      <!-- Phone -->
+      <input type="tel" name="phone" pattern="[0-9]*"
+        title="Phone number must be numeric."
+        placeholder="PHONE NUMBER"
+        class="w-full border-b border-black bg-transparent placeholder-black text-black px-1 py-2 focus:outline-none focus:border-gray-600"/>
+
+      <!-- Message -->
+      <div class="message_bar">
+        <textarea name="message" rows="10" column="6" required
+          placeholder="YOUR MESSAGE*"
+          class="w-full border-b border-black bg-transparent placeholder-black text-black px-1 py-2 focus:outline-none focus:border-gray-600 resize-none"></textarea>
+      </div>
+
+      <!-- Submit Button -->
+      <div class="submit_button">
+        <button type="submit"
+          class="px-10 py-2 border border-black text-black tracking-widest font-medium hover:bg-black hover:text-white transition duration-300">
+          SUBMIT
+        </button>
+      </div>
+
+      <!-- Honeypot Field (not visible to real users) -->
+      <div style="display:none;">
+        <label>Do not fill this out: <input type="text" name="_honey" /></label>
+      </div>
+      
+    </form>
+  </div>
+</section>
+
+</body>
+</html>

@@ -1,0 +1,227 @@
+/* General Typography */
+body {
+  font-family: 'Inter', sans-serif;
+  font-family: 'Puppies Play', cursive;
+  font-family: 'Quattrocento', serif;
+  font-family: 'Ruwudu', serif;
+  font-family: 'Mohave', sans-serif;
+  background-color: #000000;
+  color: #ffffff;
+  margin: 0;
+  padding: 0;
+}
+
+/* Mystery Header Title */
+h1 {
+  font-weight: 600;
+  letter-spacing: 0.2em;
+}
+
+/* Navigation Tabs */
+#navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background-color: black;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.875rem;
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid #374151; /* equivalent to Tailwind's gray-700 */
+}
+
+#navbar a {
+  text-decoration: none;
+  color: white;
+  padding-bottom: 0.2rem;
+  transition: color 0.3s ease;
+}
+
+#navbar a:hover {
+  color: #9ca3af; /* equivalent to Tailwind's gray-400 */
+}
+
+.header-overlay {
+  z-index: 1000; /* ensures navbar (z-index: 1000) appears on top */
+}
+
+section {
+  padding-top: 80px;
+}
+
+/* First Book */
+.content-wrapper {
+  background-image: url('mystery/Lantern_Elevator.png');
+  background-size: cover;
+  background-position: center;
+  padding: 60px 20px;
+  background-color: transparent;
+  z-index: 1;
+}
+
+/* Flex layout for image + text */
+.content-inner {
+  max-width: 1500px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Book image styling */
+.Mysterybook-image img {
+  width: 550px;
+  height: auto;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.7); 
+}
+
+/* Book text area */
+.book-description {
+  flex: 1;
+  max-width: 800px;
+}
+
+.book-description h2 {
+  font-size: 4rem;
+  font-weight: 300;
+  font-family: 'Puppies Play';
+  margin-bottom: 12px;
+}
+
+.book-description .price {
+  font-size: 1.1rem;
+  color: #ccc;
+  margin-bottom: 24px;
+  font-family: 'Quattrocento';
+}
+
+.book-description p {
+  font-size: 0.95rem;
+  line-height: 1.75;
+  color: #d1d5db;
+  margin-bottom: 20px;
+  font-family: 'Quattrocento';
+}
+
+.book-description .questions p {
+  font-style: italic;
+  color: #aaa;
+  margin-bottom: 6px;
+  font-family: 'Quattrocento';
+}
+
+.content-wrapper1 {
+  background-image: url('action/Background.png');
+  background-size: cover;
+  background-position: center;
+  padding: 60px 20px;
+  background-color: transparent;
+  z-index: 1;
+}
+
+/* Second book */
+.Actionbook-image img {
+  width: 550px;
+  height: auto;
+}
+
+.Actionbook-image {
+  float: left;
+  width: 280px;
+  margin-right: 24px;
+  margin-bottom: 12px;
+}
+
+.book-description {
+  overflow: hidden;
+  max-width: 100%;
+}
+
+.book-description1 h2 {
+  font-size: 4rem;
+  font-weight: 300;
+  font-family: 'Ruwudu';
+  margin-bottom: 12px;
+}
+
+.book-description1 .price {
+  font-size: 1.1rem;
+  color: #ccc;
+  margin-bottom: 24px;
+  font-family: 'Quattrocento';
+}
+
+.book-description1 p {
+  font-size: 0.95rem;
+  line-height: 1.75;
+  color: #d1d5db;
+  margin-bottom: 20px;
+  font-family: 'Quattrocento';
+}
+
+
+/* Third book */
+.content-wrapper2 {
+  background-image: url('sci-fi/Background.png');
+  background-size: cover;
+  background-position: center;
+  padding: 60px 20px;
+  background-color: transparent;
+  z-index: 1;
+}
+
+.Actionbook-image img {
+  width: 550px;
+  height: auto;
+}
+
+.Actionbook-image {
+  float: left;
+  width: 280px;
+  margin-right: 24px;
+  margin-bottom: 12px;
+}
+
+.book-description {
+  overflow: hidden;
+  max-width: 100%;
+}
+
+.book-description1 h2 {
+  font-size: 4rem;
+  font-weight: 300;
+  font-family: 'Mohave';
+}
+
+.book-description1 .price {
+  font-size: 1.1rem;
+  color: #ccc;
+  margin-bottom: 24px;
+  font-family: 'Quattrocento';
+}
+
+.book-description1 p {
+  font-size: 0.95rem;
+  line-height: 1.75;
+  color: #d1d5db;
+  margin-bottom: 20px;
+  font-family: 'Quattrocento';
+}
+
+@media (min-width: 768px) {
+  .content-inner {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  .Actionbook-image {
+    float: none;
+    display: block;
+    margin: 0 auto 24px auto;
+    width: 100%;
+    max-width: 550px;
+  }
+}
