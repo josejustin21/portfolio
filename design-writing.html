@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Security-Policy" content="
+    default-src 'self';
+    script-src 'self' https://cdn.tailwindcss.com;
+    style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+    font-src 'self' https://fonts.gstatic.com;
+    img-src 'self' data:;
+    form-action https://formspree.io;
+    base-uri 'self';
+    object-src 'none';
+    ">
+    <title>Design & Writing</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="design-writing.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Puppies+Play&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Quattrocento&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Ruwudu:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Mohave:wght@400;700&display=swap" rel="stylesheet">
+</head>
+
+<!-- Safety Measures -->
+<script>
+document.getElementById("contact-form").addEventListener("submit", function (e) {
+  const name = document.querySelector('input[name="name"]').value.trim();
+  const email = document.querySelector('input[name="email"]').value.trim();
+  const phone = document.querySelector('input[name="phone"]').value.trim();
+  const message = document.querySelector('textarea[name="message"]').value.trim();
+
+  const nameRegex = /^[A-Za-z\s]+$/;
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const phoneRegex = /^[0-9]+$/;
+
+  if (!nameRegex.test(name)) {
+    alert("Please enter a valid name (letters only).");
+    e.preventDefault();
+    return;
+  }
+
+  if (!emailRegex.test(email)) {
+    alert("Please enter a valid email address.");
+    e.preventDefault();
+    return;
+  }
+
+  if (phone && !phoneRegex.test(phone)) {
+    alert("Phone number must contain digits only.");
+    e.preventDefault();
+    return;
+  }
+
+  if (message.length < 5) {
+    alert("Message is too short.");
+    e.preventDefault();
+    return;
+  }
+
+  // Optional: escape script tags or dangerous HTML (sanitization)
+  const suspiciousPattern = /<script|<\/script|onerror=|onload=/i;
+  if (
+    suspiciousPattern.test(name) ||
+    suspiciousPattern.test(email) ||
+    suspiciousPattern.test(phone) ||
+    suspiciousPattern.test(message)
+  ) {
+    alert("Invalid characters detected. Submission blocked.");
+    e.preventDefault();
+  }
+});
+</script>
+
+<!-- Preserve Scroll Position, even after reload -->
+<script>
+  window.addEventListener('beforeunload', function () {
+    sessionStorage.setItem('scrollY', window.scrollY);
+  });
+</script>
+
+<script>
+  window.addEventListener('load', function () {
+    const scrollY = sessionStorage.getItem('scrollY');
+    if (scrollY !== null) {
+      window.scrollTo(0, parseInt(scrollY));
+    }
+  });
+</script>
+
+<body>
+  <!-- Navigation Tabs -->
+  <nav id="navbar">
+    <a href="index.html" rel="noopener noreferrer">Back</a>
+    <a href="#Mystery_title">Mystery</a>
+    <a href="#Action_title">Action</a>
+    <a href="#Sci-Fi_title">Sci-Fi</a>
+  </nav>
+
+  <!-- Background Header with Mystery Label -->
+  <div id= "Mystery_title" class="relative w-full h-48 bg-cover bg-center" style="background-image: url('mystery/Background.png');">
+    <div class="absolute inset-0 bg-black bg-opacity-50 flex justify-center items-center">
+      <h1 class="text-4xl tracking-widest border-2 border-white px-8 py-2 uppercase">Mystery</h1>
+    </div>
+  </div>
+
+  <!-- Mystery Section -->
+  <section id= "Mystery" class="content-wrapper">
+  <div class="content-inner">
+    
+    <!-- Book Image -->
+    <div class="Mysterybook-image">
+      <img src="mystery/1st Book.png" alt="Elevator to Astral World Book Cover">
+    </div>
+
+    <!-- Book Description -->
+    <div class="book-description">
+      <h2>Elevator to Astral World</h2>
+      <p class="price">Rp 58.000</p>
+
+      <p>
+        Satu dekade lalu, West Edgeward mendapat kabar kehilangan Mamanya dari kepolisian. Tanpa jejak tanpa kabar, kamera pemantau di kantor Mamanya terakhir kali menyorot sosok Ibu tunggal itu pada sore hari sebelum masuk ke dalam elevator.
+      </p>
+
+      <p>
+        Hari ini, Daniel, temannya West, mengirimkannya sebuah artikel guyonan yang berisi tentang keberadaan elevator aneh, yang diklaim membawa manusia menuju semacam gerbang ke alam lain...
+      </p>
+
+      <p>
+        Penumpang pada elevator itu kemudian bertanya padanya. “Tempat macam apa yang ingin kau pergi?”
+      </p>
+
+      <div class="questions">
+        <p>Ke mana Mama West pergi?</p>
+        <p>Apa yang ada di dalam elevator itu?</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Background Header with Action Label -->
+  <div id= "Action_title" class="relative w-full h-48 bg-cover bg-center" style="background-image: url('mystery/Background.png');">
+    <div class="absolute inset-0 bg-black bg-opacity-50 flex justify-center items-center">
+      <h1 class="text-4xl tracking-widest border-2 border-white px-8 py-2 uppercase">Action</h1>
+    </div>
+  </div>
+
+<!-- Action Section -->
+  <section id= "Action" class="content-wrapper1">
+  <div class="content-inner">
+
+    <!-- Book Description -->
+    <div class="book-description1">
+        <div class="Actionbook-image float-left">
+          <img src="action/Book.png" alt="Scum's Dogfight Book Cover">
+        </div>
+      <h2>Scum's Dogfight</h2>
+      <p class="price">Rp 58.000</p>
+
+      <p>
+        Meteor CX-196 menghantam bumi pada tahun 2070, menenggelamkan benua dan menaikkan air laut hingga membanjiri daratan yang dapat dihuni makhluk hidup. 90% manusia mencapai kematian yang damai hanya dalam rentang waktu beberapa jam pada hari kelam itu, 9% akan mati dari letusan gunung berapi dan tsunami yang mengikuti.
+      </p>
+
+      <p>
+        Setelah satu dekade, pemukiman dan kota besar yang hancur sudah berhasil dibangun kembali, pertumbuhan populasi manusia perlahan meningkat. Bersama dengan itu, anomali tentang mutasi genetik hasil paparan serpihan batu meteor terjadi pada satu dari setiap sejuta orang.
+      </p>
+
+      <p>
+        Pengendalian api, manipulasi bayangan, telekinesis, kemampuan menghilang. Keseimbangan kekuatan antar negara yang memang sudah tak berjumlah banyak terpecah seiring dengan bertambah banyaknya individual tersebut. Diberi kode ISPA (Individual Super Pemilik Anomali), pengidapnya tersebar pada remaja sehat hingga orang tua renta, dari anak bayi hingga pengidap disabilitas.
+      </p>
+
+      <p>
+        Chafix Bronhd adalah salah seorang yang berhasil hidup dari terjangan meteor. Mantan pensiunan pasukan komando ini direkrut kembali ke agensi rahasia pemerintah untuk mengontrol penjahat yang memanfaatkan kekuatan super di kota-kota. Seperti agen pemerintah rahasia pada umumnya, ia dihadapkan pada konfilk eksistensial.
+      </p>
+
+      <p>
+        Pertama, ia tak punya kekuatan super. Kedua, ia dendam dengan pemerintah yang telah mengirimnya ke neraka di dunia. Masalah kesekiannya, konsep baik dan jahat di dunia ini mungkin telah menjadi abstrak dan terdistorsi.
+      </p>
+
+    </div>
+  </div>
+</section>
+
+<!-- Background Header with Sci-Fi Label -->
+  <div id= "Sci-Fi_title" class="relative w-full h-48 bg-cover bg-center" style="background-image: url('mystery/Background.png');">
+    <div class="absolute inset-0 bg-black bg-opacity-50 flex justify-center items-center">
+      <h1 class="text-4xl tracking-widest border-2 border-white px-8 py-2 uppercase">Sci-Fi</h1>
+    </div>
+  </div>
+
+<!-- Sci-Fi Section -->
+  <section id= "Sci-Fi" class="content-wrapper2">
+  <div class="content-inner">
+
+    <!-- Book Description -->
+    <div class="book-description1">
+        <div class="Actionbook-image float-left">
+          <img src="sci-fi/1st Book.png" alt="Insomcination Book Cover">
+        </div>
+      <h2>Insomcination</h2>
+      <p class="price">Rp 58.000</p>
+
+      <p>
+        Dalam mimpi, otak memiliki kuasa penuh untuk mengatur apa yang menjadi realitas.
+      </p>
+
+      <p>
+        Seperti halusinasi, respon tubuh menyatakan pengalaman yang dilalui oleh sebuah individu sebagai suatu kenyataan. Suatu dunia riil yang absolut. Oleh karena itu, penyakit insomnia ada untuk mencegahnya.
+      </p>
+
+      <p>
+        Mimpi buruk akan selalu bertahan, mereka tak bisa dilenyapkan karena mereka adalah anomali. Oleh karena itu, langkah logis adalah untuk selalu menolak kondisi terlelap, untuk tetap bertahan di dalam mimpi buruk.
+      </p>
+
+      <p>
+        Lari, atau lawan. Mungkin keduanya, mungkin tidak keduanya.
+      </p>
+
+      <div class="questions">
+        <p>Masalahnya, apakah itu sehat? Apakah ada jaminan anomali tak akan menyentuhku?</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+</body>
+</html>
