@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Online Shoppers’ Intention</title>
+  <link rel="stylesheet" href="data-analyst.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Dhyana&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+  <!-- Navigation Bar (reused style) -->
+  <nav class="navbar">
+    <a href="Portfolio.html">Back</a>
+    <a href="#Preview">Preview</a>
+    <a href="#Technique">Technique</a>
+    <a href="#Result">Result</a>
+  </nav>
+
+  <!-- Header -->
+  <header id= "Preview" class="header">
+    <p class="repo-link"><a href="https://archive.ics.uci.edu/dataset/468/online+shoppers+purchasing+intention+dataset"> UCI Machine Learning Repository</p></a>
+    <h1>Online Shoppers’ Intention</h1>
+    <p class="summary">
+      The dataset consists of feature belonging to 12,330 sessions. The dataset was formed so that each session would belong to a different user in a 1-year period.
+    </p>
+  </header>
+
+  <!-- Grid Container -->
+  <main class="info-grid">
+    <!-- General -->
+    <section class="card blue-border">
+      <h2>General</h2>
+      <p>
+        Company, especially one operating fully online, needs constant revenue in order to survive and thrive in market.
+      </p>
+
+      <p>
+        Acquiring knowledge as to which user behavior makes the best money can be achieved through data analysis.
+        Here, they shall be used to reveal their intention as shown in strings and numbers.
+      </p>
+
+      <img src="1st_Page/graph.png" class="circle_picture" />
+    </section>
+
+    <!-- Components -->
+    <section class="card pink-border">
+      <h2>Components</h2>
+      <img src="1st_Page/Components.png" alt="Components Table" class="components-img" />
+    </section>
+
+    <!-- Additional Information -->
+    <section class="card purple-border">
+      <h2>Additional Informations</h2>
+      <p>
+        "Administrative", "Administrative Duration", "Informational", "Informational Duration", "Product Related" and
+        "Product Related Duration" represent the number of different types of pages visited by the visitor and total
+        time spent in each of these page categories.
+      </p>
+      <p>
+        The "Bounce Rate", "Exit Rate" and "Page Value" represent the metrics measured by “Google Analytics” for each
+        page in the e-commerce site. The “Special Day” feature indicates the closeness of the site-visiting time to a
+        specific special day (e.g. Mother’s Day).
+        The dataset also includes operating system, browser, region, traffic type, returning or new visitor,
+        and a Boolean value for weekend, and month of the year.
+      </p>
+    </section>
+
+    <!-- Goals -->
+    <section class="card goal-box">
+      <h2>Goals</h2>
+      <ol>
+        <li>Building a functional model that can determine the accurate result (e.g. whether overall user’s behavior would result in a revenue) to predict an online shopping site’s usefulness.</li>
+        <li>Knowing which variables are the most important to be improved, and which are the least useful to be improved.</li>
+        <li>The model is capable of predicting the minimal value of certain variables in order to achieve revenue.</li>
+      </ol>
+    </section>
+  </main>
+
+<br><br>
+
+<!-- TECHNIQUE Section -->
+<section id="Technique" class="technique-section">
+  <h2>Data Preparation</h2>
+  <p>
+    Mainly checking about the completeness of the data, which include removing missing and incomplete values, removing typos, and adding necessary variables to be calculated.
+    The data is named <strong>“Online Shoppers’ Intention”</strong> and is available online in <a href="https://archive.ics.uci.edu/dataset/468/online+shoppers+purchasing+intention+dataset" target="_blank">UCI Machine Learning Repository</a>. 
+    The .csv format is attached below. The quick peek of the data is as follows:
+  </p>
+  
+  <img src="2nd_Page/Preview_Data.png" alt="Data Preview" class="technique-img" />
+  
+  <p class="second">
+    The model is made up of mostly integer data, which can be directly used into the model. Strings (Categorical and Continuous) can also be factored into the Matlab code using Categorical Predictors. The method used here is decision tree fitcensemble (multiple tree classifier), instead of fitctree (single classification tree).
+  </p>
+
+  <img src="2nd_Page/Lower_box.png" alt="Use-case Comparison Table" class="technique-img" />
+</section>
+
+
+<!-- Generating Model Section -->
+<section id="generating-model" class="section-model">
+  <h2>Generating Model</h2>
+  <p class="section-intro">
+    The training data and test data is ultimately set at 65:35 ratio, but initially used 80:20 ratio.
+  </p>
+  
+  <img src="2nd_Page/Confusion_chart_before.png" alt="Confusion matrix before class weight" class="model-image" />
+
+  <br>
+  <p class="problem-title">
+    This is the initial result and first problem I ran into: <strong>THE MODEL RARELY PREDICTS TRUE, EVEN WHEN THE ACTUAL LABEL IS TRUE.</strong>
+  </p>
+
+  <ol class="problem-list">
+    <li>Row 1: Actual = false<br>98.6% of "false" examples were correctly predicted as "false"<br>1.4% were wrongly predicted as "true" → false positives</li>
+    <li>Row 2: Actual = true<br>99.6% of "true" examples were wrongly predicted as "false" → false negatives<br>Only 0.4% were correctly predicted as "true"</li>
+  </ol>
+
+  <div class="metrics">
+    <p><strong>Accuracy: 78.91% </strong> </p>
+      <p>Sounds decent, BUT this can be misleading in imbalanced datasets.</p>
+    <p><strong>Precision: 6.67% </strong> </p>
+      <p>Out of all the times the model predicted "true", only 6.67% were actually true. The model is getting lots of false positives.</p>
+    <p><strong>Recall: 0.40% </strong> </p>
+      <p>Out of all actual "true" labels, the model correctly identified only 0.4%. This is extremely low — it’s almost always missing the true cases (many false negatives).</p>
+    <p><strong>F1 Score: 0.76%</strong></p>
+    <p>This is the harmonic mean of precision and recall, and it confirms the model is doing very poorly on the "true" class.</p>
+    <p>
+      After using the code “tabulate(y_train)” it’s known that false data dominates (85,67%), while correct data is rare (14,33%). 
+      The problem is naturally imbalanced classification problem.
+      The model is prioritizing accuracy over usefulness — the model learn to just guess "false" because it’s “usually right.” 
+      It is actually ignoring rare events, even if it’s right. 
+      The model is playing it "safe" and almost never predicting "true".
+    </p>
+  </div>
+</section>
+
+<section id="generating-model-solution" class="section-model">
+  <h2 class="second">The solution to the problem in this model </h2>
+    <p class="section-intro">
+      <strong>USING CLASS WEIGHT</strong>
+    </p>
+
+<div class="comparison-grid-copied">
+  <p>Explanation</p>
+  <p>Adjustment</p>
+  <p>Result</p>
+</div>
+
+  <div class="comparison-grid">  
+    <p class="explanation"> 
+      This method is usually used in cases where missing a true is considered critical and more fatal than falsely predicting true, like detecting virus or differentiating spams and viruses.
+      This basically tells the model that missing a 'true' is 10x worse than falsely predicting it. 
+      The code is attached in costMatrix and in the tree code itself.
+    </p>
+
+    <p class="adjustment">
+      Further research and experiments reveal the most suitable ratio of training to test data is 65:35. 
+      This ensures harmonic balance between the data fed to system and the trial it undertakes.
+      This also raises the accuracy, precision, recall, and F1 score as well. 
+      Decision Tree and Importance Graph generated before will be scrapped and replaced by new graphs from this method.
+    </p>
+
+    <p class="result">
+      The overall correctness of predictions improved. Very few false positives remain. 
+      The model is also catching the majority of actual “true” cases as shown in high recall ratio. 
+      Lastly, high F1 score shows a very strong balance between precision and recall.
+      Further double checking is added by cross-validation and PR-AUC curve. 
+      This performs 5-fold cross-validation on trained decision tree model and measure classifier’s performance.
+    </p>
+  </div>
+
+  <div class="after-confusion-wrapper">
+    <p class="comparison-heading">COMPARISON GRAPH BEFORE CLASS WEIGHT -- AFTER CLASS WEIGHT</p>
+
+    <div class="comparison-grid">
+      <img src="2nd_Page/BEFORE.png" alt="Before class weight comparison" class="model-image" />
+      <img src="2nd_Page/AFTER.png" alt="After class weight comparison" class="model-image" />
+    </div>
+
+    <img src="2nd_Page/Confusion_chart_after.png" alt="Confusion matrix after class weight" class="model-image-after" />
+
+    <p class="validation-heading">5-FOLD CROSS VALIDATION (kfoldloss)</p>
+  </div>
+
+  <div class="validation-grid">
+    <img src="2nd_Page/PR-AUC curve.png" alt="PR-AUC curve" class="model-image-AUC" />
+    <img src="2nd_Page/Cross_validation.png" alt="5-fold cross-validation chart" class="model-image-cross" />
+    <img src="2nd_Page/Answer.png" alt="Summary answer" class="model-image-answer" />
+  </div>
+</section>
+
+
+<!-- RESULT Section -->
+<section id="Result" class="result-tabs">
+  <h2>Result </h2>
+
+  <div class="tab-buttons">
+    <button data-tab="functional" class="active">Functional Model</button>
+    <button data-tab="importance">Importance Graph</button>
+    <button data-tab="threshold">Minimum Threshold</button>
+  </div>
+
+  <div class="tab-content">
+    <div id="functional" class="tab-section active">
+      <h3>Functional Model</h3>
+      <p id="functional-model">Charts help us see a more visual and faster representation of the most relevant data.</p>
+      <img src="3rd_Page/Decision_Tree.png" alt="Functional Model Image">
+      <p class="caption">
+        Resulting decision tree looks messy and unreadable, because that's the model result.
+      </p>
+      <p class="caption">
+        We only needs to know whether user's behavior will result in a purchase, so below is that process.
+      </p>
+      <img src="3rd_Page/Prediction.png" alt="Functional Model Image">
+      <p class="caption">From left to right are administrative, administrative_duration, informational, 
+        informational_duration, Product.Related, Product.Related_duration, Bounce Rates, Exit Rates, Page Values, Special Day, 
+        Month, Operating System, Browser, Region, Traffic Type,  Visitor, and Weekend.</p>
+    </div>
+
+    <div id="importance" class="tab-section">
+      <h3>Importance Graph</h3>
+      <p id="functional-model">Importance chart helps visualize which variables need to be paid the most attention, 
+        and which variables can be safely ignored when making the next update
+      </p>
+      <img src="3rd_Page/Importance_chart.png" alt="Importance Graph Image">
+
+      <div id="double-grid" class="tab-section">
+        <p><strong>Page Value</strong> is the most important variables in the whole dataset. It makes so much sense, 
+          since it represents the average value for a web page that a user visited before completing an e-commerce transaction. 
+          Page value (in this case, it’s acquired from Google Analytics) does not always result in a purchase. 
+          Page value represents the average revenue contributed by a specific page to a conversion or goal completion, 
+          not the direct result of a purchase. 
+          It indicates how valuable a page is in driving a user towards a desired outcome, but the outcome itself might not always be a purchase.
+        </p>
+      
+        <p><strong>Month</strong> and <strong>Exit Rate</strong>, although pale in comparison, are the second most important variables. 
+          Common dataset available in other sources have indicated that period can indeed influence consumer’s purchasing pattern, 
+          especially when the month contains special occasion (e.g. Valentine’s Day, Christmas, etc.). 
+          Exit rate is the percentage of visits that were the last in the session, 
+          whereas bounce rate is the percentage of visits that were the only one of the session. 
+          In short, it is the percentage of exits on a page.
+        </p>
+      </div>
+    </div>
+
+    <div id="threshold" class="tab-section">
+      <h3>Minimum Threshold</h3>
+      <p id="functional-model">This section shows the minimum threshold setting used to make accurate predictions.</p>
+      <img src="3rd_Page/Decision_tree_string.png" alt="Minimum Threshold Image">
+      <p>
+        For the overall result, take, for example, <strong>Page Value</strong>. <strong>Page Value</strong> is the most important parameter in this model as shown in the importance graph. 
+        With help from text extraction from readily available AI Online, such as ChatGPT, the minimal threshold is as follows:
+
+        <p>Node 5                         :  PageValues >= 0.068328 → Go to node If Administrative_Duration >= 91.75 → TRUE (Node 11)</p>
+        <p>Node 25                       :  PageValues >= 12.597 → TRUE</p>
+        <p>Node 53                       :   PageValues >= 10.0395 → TRUE</p>
+        <p>Node 52                       :   PageValues &lt 10.0395 and &lt 6.474 → TRUE</p>
+        <p>Node 74                      :    PageValues &lt 6.474 → TRUE</p>
+        <p>Node 76-99 path     :   If PageValues &lt 18.7195 → go deeper, eventually leads to TRUE (Node 99)</p>
+        <p>Node 128-159 path   :   If PageValues &lt 253.33 → leads to TRUE at Node 159</p>
+
+        <p>Some outlier data can be safely ignored as we prioritize the majority pattern revealed by the tree. </p>
+        <p>To summarize, Page Value needs to at least be <strong>10.0395</strong> and shouldn't exceed <strong>253.33</strong>.</p>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Working JavaScript -->
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const buttons = document.querySelectorAll('.tab-buttons button');
+    const sections = document.querySelectorAll('.tab-section');
+
+    buttons.forEach(button => {
+      button.addEventListener('click', () => {
+        // Remove active from all buttons
+        buttons.forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+
+        // Hide all sections
+        sections.forEach(section => section.classList.remove('active'));
+
+        // Show selected section
+        const targetId = button.getAttribute('data-tab');
+        document.getElementById(targetId).classList.add('active');
+      });
+    });
+  });
+</script>
+
+</body>
+</html>
